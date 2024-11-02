@@ -1,5 +1,5 @@
 using AutoMapper;
-using TodoAPI.Models;
+using crud_dotnet.entitys;
 
 namespace TodoAPI.MappingProfiles
 {

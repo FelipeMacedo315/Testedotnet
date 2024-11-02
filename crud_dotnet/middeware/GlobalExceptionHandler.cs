@@ -4,7 +4,7 @@ using System.Net;
 using Microsoft.AspNetCore.Diagnostics;
 
 
-namespace TodoAPI.Middleware
+namespace crud_dotnet.Middleware
 {
     public class GlobalExceptionHandler : IExceptionHandler
     {

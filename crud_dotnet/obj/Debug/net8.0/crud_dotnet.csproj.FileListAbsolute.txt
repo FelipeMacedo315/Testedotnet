@@ -137,3 +137,4 @@ C:\Users\felip\OneDrive\Documentos\GitHub\Testedotnet\crud_dotnet\obj\Debug\net8
 C:\Users\felip\OneDrive\Documentos\GitHub\Testedotnet\crud_dotnet\obj\Debug\net8.0\crud_dotnet.pdb
 C:\Users\felip\OneDrive\Documentos\GitHub\Testedotnet\crud_dotnet\obj\Debug\net8.0\crud_dotnet.genruntimeconfig.cache
 C:\Users\felip\OneDrive\Documentos\GitHub\Testedotnet\crud_dotnet\obj\Debug\net8.0\ref\crud_dotnet.dll
+C:\Users\felip\OneDrive\Documentos\GitHub\Testedotnet\crud_dotnet\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll

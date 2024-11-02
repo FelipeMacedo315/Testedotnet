@@ -10,6 +10,7 @@ public class CreateUserRequest
     public string Email { get; set; }
 
     [Required]
-    public DateTime Cpf { get; set; }
+    [StringLength(11)]
+    public string Cpf { get; set; }
 
 }

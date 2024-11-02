@@ -1,4 +1,4 @@
-namespace TodoAPI.Models
+namespace crud_dotnet.entitys
 {
     public class DbSettings
     {

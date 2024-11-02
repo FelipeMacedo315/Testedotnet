@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using TodoAPI.Models;
 
-namespace TodoAPI.AppDataContext
+namespace crud_dotnet.entitys
 {
 
     // TodoDbContext class inherits from DbContext
@@ -16,6 +15,7 @@ namespace TodoAPI.AppDataContext
         public UserDbContext(IOptions<DbSettings> dbSettings)
         {
             _dbsettings = dbSettings.Value;
+
         }
 
 
@@ -26,14 +26,14 @@ namespace TodoAPI.AppDataContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_dbsettings.ConnectionString);
+            optionsBuilder.UseInMemoryDatabase("meuBancoEmMemoria");
         }
 
         // Configuring the model for the User entity
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
-                .ToTable("TodoAPI")
+                .ToTable("usuarios")
                 .HasKey(x => x.Id);
         }
     }

@@ -1,10 +1,10 @@
 using AutoMapper;
 using crud_dotnet.Interface;
 using Microsoft.EntityFrameworkCore;
-using TodoAPI.AppDataContext;
-using TodoAPI.Models;
 
-namespace user.Services
+using crud_dotnet.entitys;
+
+namespace crud_dotnet.Services
 {
     public class UserServices : IUserServices
     {
@@ -43,11 +43,15 @@ namespace user.Services
         }
 
 
-        public Task GetByIdAsync(Guid id)
+        public async Task<User> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                throw new KeyNotFoundException($"Não existe nenhum usuario com este id: {id} .");
+            }
+            return user;
         }
-
         public Task UpdateUserAsync(Guid id, UpdateUserRequest request)
         {
             throw new NotImplementedException();
