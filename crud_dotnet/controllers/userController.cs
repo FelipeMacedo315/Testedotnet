@@ -79,5 +79,42 @@ namespace crud_dotnet.Controllers
                 return StatusCode(500, new { message = $"Houve um erro e não encontramos nenhum usuario com este id: {id}.", error = ex.Message });
             }
         }
+        //////////////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////[HttpPut("{id:guid}")]
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateUserAsync(Guid id, UpdateUserRequest request)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+
+                var user = await _userServices.GetByIdAsync(id);
+                if (user == null)
+                {
+                    return NotFound(new { message = $" Usuario com id {id} not found" });
+                }
+
+                await _userServices.UpdateUserAsync(id, request);
+                return Ok(new { message = $" Usuario com id  {id} com sucesso!" });
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = $" Houve um erro e não foi possivel atualizar o usuario com id  {id}", error = ex.Message });
+
+
+            }
+
+
+        }
+
+        // ...
     }
+
 }

@@ -32,8 +32,8 @@ namespace crud_dotnet.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while creating the Todo item.");
-                throw new Exception("An error occurred while creating the Todo item.");
+                _logger.LogError(ex, "Houve um erro e não foi possivel criar o usuario.");
+                throw new Exception("Houve um erro e não foi possivel criar o usuario.");
             }
         }
 
@@ -52,10 +52,38 @@ namespace crud_dotnet.Services
             }
             return user;
         }
-        public Task UpdateUserAsync(Guid id, UpdateUserRequest request)
+        public async Task UpdateUserAsync(Guid id, UpdateUserRequest request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var user = await _context.Users.FindAsync(id);
+                if (user == null)
+                {
+                    throw new Exception($"Todo item with id {id} not found.");
+                }
+
+                if (request.Nome != null)
+                {
+                    user.Nome = request.Nome;
+                }
+                if (request.Email != null)
+                {
+                    user.Email = request.Email;
+                }
+                if (request.Cpf != null)
+                {
+                    user.Cpf = request.Cpf;
+                }
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Houve um erro ao tentar atualizar o usuario com o seguinte id :  {id}.");
+                throw;
+            }
         }
+
+        // ...
 
         Task IUserServices.DeleteUserAsync(Guid id)
         {
