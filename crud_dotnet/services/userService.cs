@@ -37,11 +37,6 @@ namespace crud_dotnet.Services
             }
         }
 
-        public Task DeleteUserAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
 
         public async Task<User> GetByIdAsync(Guid id)
         {
@@ -85,10 +80,28 @@ namespace crud_dotnet.Services
 
         // ...
 
-        Task IUserServices.DeleteUserAsync(Guid id)
+        // ...
+
+
+        public async Task DeleteUserAsync(Guid id)
         {
-            throw new NotImplementedException();
+
+            var user = await _context.Users.FindAsync(id);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+
+            }
+            else
+            {
+                throw new Exception($"Não existe nenhum usuario com esse id: {id}");
+            }
+
+
         }
+
+        // ...
 
         public UserServices(UserDbContext context, ILogger<UserServices> logger, IMapper mapper)
         {
