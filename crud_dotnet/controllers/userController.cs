@@ -14,8 +14,11 @@ namespace crud_dotnet.Controllers
         {
             _userServices = userServices;
         }
+
+       
+
         [HttpPost]
-        public async Task<IActionResult> CreateTodoAsync(CreateUserRequest request)
+        public async Task<IActionResult> CreateUserAsync(CreateUserRequest request)
         {
             if (!ModelState.IsValid)
             {
